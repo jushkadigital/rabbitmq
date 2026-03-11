@@ -1,25 +1,28 @@
-version: '3.8'
-
 services:
   rabbitmq:
     image: rabbitmq:3-management
     container_name: rabbitmq
     hostname: rabbitmq
-    restart: always
+    restart: unless-stopped
     environment:
       RABBITMQ_DEFAULT_USER: admin
-      RABBITMQ_DEFAULT_PASS: admin123
+      RABBITMQ_DEFAULT_PASS: josue
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq
     networks:
       - red-compartida
     expose:
       - "5672"
+      - "15672"
+    cpus: 0.75
+    mem_limit: 768m
+    mem_reservation: 384m
+    pids_limit: 200
 
 volumes:
   rabbitmq_data:
 
 networks:
   red-compartida:
-    driver: bridge        # <--- Define el tipo de red (estándar local)
-    name: red-compartida  # <--- Opcional pero recomendado
+    external: true
+    name: red-compartida
