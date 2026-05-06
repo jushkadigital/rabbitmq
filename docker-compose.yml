@@ -9,20 +9,12 @@ services:
       RABBITMQ_DEFAULT_PASS: admin123
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq
-    networks:
-      - red-compartida
-    expose:
-      - "5672"
-      - "15672"
+    ports:
+      - "5672:5672"
+      - ":15672:15672"
     cpus: 0.75
     mem_limit: 768m
-    mem_reservation: 384m
-    pids_limit: 200
 
 volumes:
   rabbitmq_data:
 
-networks:
-  red-compartida:
-    external: true
-    name: red-compartida
