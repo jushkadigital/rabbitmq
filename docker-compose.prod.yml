@@ -12,7 +12,7 @@ services:
       RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASS}
       RABBITMQ_ERLANG_COOKIE: ${RABBITMQ_ERLANG_COOKIE}
       # Limit Erlang VM to 2 schedulers and reduce CPU usage
-      RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS: "-S 2:2 +sbwt very_short +P 1000000"
+      RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS: "+S 2:2 +sbwt very_short +P 1000000"
       # Force Erlang to use limited memory and reduce GC pressure
       ERL_MAX_PORTS: 65536
       ERL_MAX_ETS_TABLES: 4096

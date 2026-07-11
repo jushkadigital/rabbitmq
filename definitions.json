@@ -9,15 +9,13 @@
   "rabbitmq_policies": [
     {
       "vhost": "/",
-      "name": "ha-limit-queues",
+      "name": "queue-limits",
       "pattern": ".*",
       "apply-to": "queues",
       "definition": {
         "max-length": 100000,
-        "max-length-bytes": 0,
         "message-ttl": 86400000,
-        "overflow": "reject-publish",
-        "delivery-limit": 5
+        "overflow": "reject-publish"
       },
       "priority": 0
     }
