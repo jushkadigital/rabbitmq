@@ -1,0 +1,25 @@
+{
+  "rabbit_version": "3.13.0",
+  "rabbitmq_users": [],
+  "rabbitmq_vhosts": [],
+  "rabbitmq_permissions": [],
+  "rabbitmq_topic_permissions": [],
+  "rabbitmq_parameters": [],
+  "rabbitmq_global_parameters": [],
+  "rabbitmq_policies": [
+    {
+      "vhost": "/",
+      "name": "ha-limit-queues",
+      "pattern": ".*",
+      "apply-to": "queues",
+      "definition": {
+        "max-length": 100000,
+        "max-length-bytes": 0,
+        "message-ttl": 86400000,
+        "overflow": "reject-publish",
+        "delivery-limit": 5
+      },
+      "priority": 0
+    }
+  ]
+}
