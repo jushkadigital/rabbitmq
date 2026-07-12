@@ -1,9 +1,7 @@
 {
   "rabbit_version": "3.13.0",
-  "rabbitmq_users": [],
   "rabbitmq_vhosts": [],
   "rabbitmq_permissions": [],
-  "rabbitmq_topic_permissions": [],
   "rabbitmq_parameters": [],
   "rabbitmq_global_parameters": [],
   "rabbitmq_policies": [
