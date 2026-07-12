@@ -1,6 +1,6 @@
 services:
   rabbitmq:
-    image: rabbitmq:3-management
+    image: rabbitmq:3-management-alpine
     container_name: rabbitmq
     hostname: rabbitmq
     restart: unless-stopped
@@ -9,8 +9,11 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER}
       RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASS}
-      RABBITMQ_DEFAULT_VM_MEMORY_HIGH_WATERMARK: "0.6"
-      RABBITMQ_DEFAULT_DISK_FREE_LIMIT: "1GB"
+      RABBITMQ_DEFAULT_VM_MEMORY_HIGH_WATERMARK: "0.4"
+      RABBITMQ_DEFAULT_DISK_FREE_LIMIT: "2GB"
+      RABBITMQ_DEFAULT_HEARTBEAT: "60"
+      RABBITMQ_NUMBER_OF_ACCEPTORS: "2"
+      RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS: "+S 1:1 +A 5 +stbt db"
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq
     tmpfs:
@@ -20,24 +23,25 @@ services:
     expose:
       - "5672"
       - "15672"
-    cpus: 0.5
-    mem_limit: 512m
+    cpus: 0.3
+    mem_limit: 384m
     mem_reservation: 256m
+    pids_limit: 100
     ulimits:
       nofile:
-        soft: 65536
-        hard: 65536
+        soft: 4096
+        hard: 4096
     logging:
       driver: json-file
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: "5m"
+        max-file: "2"
     healthcheck:
       test: ["CMD", "rabbitmq-diagnostics", "-q", "check_running"]
-      interval: 60s
+      interval: 120s
       timeout: 10s
       retries: 3
-      start_period: 60s
+      start_period: 90s
 
 volumes:
   rabbitmq_data:
