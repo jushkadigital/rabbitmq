@@ -11,7 +11,6 @@ services:
       RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASS}
       RABBITMQ_DEFAULT_VM_MEMORY_HIGH_WATERMARK: "0.6"
       RABBITMQ_DEFAULT_DISK_FREE_LIMIT: "1GB"
-      RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS: "+S 2:2 +sbwt very_short"
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq
     tmpfs:

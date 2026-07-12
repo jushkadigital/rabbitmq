@@ -11,7 +11,7 @@ services:
       - rabbitmq_data:/var/lib/rabbitmq
     ports:
       - "5672:5672"
-      - ":15672:15672"
+      - "15672:15672"
     cpus: 0.75
     mem_limit: 768m
 
